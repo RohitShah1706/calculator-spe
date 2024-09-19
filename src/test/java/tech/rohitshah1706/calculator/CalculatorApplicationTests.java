@@ -4,36 +4,45 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class CalculatorApplicationTests {
-
-	Calculator calculator = new Calculator();
+	private Calculator calculator = new Calculator();
 
 	@Test
-	public void testAdd() {
-		assertEquals(5, calculator.add(2, 3));
+	void testSquareRoot() {
+		assertEquals(3.0, calculator.squareRoot(9));
 	}
 
 	@Test
-	public void testSubtract() {
-		assertEquals(1, calculator.subtract(3, 2));
+	void testFactorial() {
+		assertEquals(120, calculator.factorial(5));
 	}
 
 	@Test
-	public void testMultiply() {
-		assertEquals(6, calculator.multiply(2, 3));
+	void testNaturalLogarithm() {
+		assertEquals(1.6094379124341003, calculator.naturalLogarithm(5));
 	}
 
 	@Test
-	public void testDivide() {
-		assertEquals(2, calculator.divide(4, 2));
+	void testPower() {
+		assertEquals(32.0, calculator.power(2, 5));
 	}
 
 	@Test
-	public void testDivideByZero() {
-		Exception exception = assertThrows(ArithmeticException.class, () -> {
-			calculator.divide(4, 0);
-		});
-
-		assertEquals("Division by zero is not allowed", exception.getMessage());
+	void testSquareRootNegative() {
+		assertThrows(ArithmeticException.class, () -> calculator.squareRoot(-9));
 	}
 
+	@Test
+	void testFactorialNegative() {
+		assertThrows(ArithmeticException.class, () -> calculator.factorial(-5));
+	}
+
+	@Test
+	void testNaturalLogarithmNonPositive() {
+		assertThrows(ArithmeticException.class, () -> calculator.naturalLogarithm(0));
+	}
+
+	@Test
+	void testPowerZero() {
+		assertEquals(1.0, calculator.power(2, 0));
+	}
 }
