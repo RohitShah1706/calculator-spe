@@ -3,6 +3,12 @@
   hosts: myhosts
 
   tasks:
+    - name: Remove old containers
+      docker_container:
+        name: calculator
+        state: absent
+        force_kill: yes
+
     - name: Deploy Calculator App
       # run in background & interactive
       docker_container:
